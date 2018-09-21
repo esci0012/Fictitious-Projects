@@ -1,0 +1,103 @@
+<html>
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        
+        <title>Fibonacci</title>
+        
+        <style>
+            
+            h1{
+                margin: 30px;
+                color: #0000ff;
+                font-size: 45px;
+                font-family: 'Calibri';
+            }
+            
+            form{
+                margin: 30px;
+                margin-top: 0px;
+            }
+            
+            button{
+                margin: 30px;
+                padding: 10px; 
+            }
+            
+        </style>
+        
+    </head>
+    
+    <body>
+        
+        <div>
+            
+            <h1>Fibonacci</h1>
+            
+        </div>
+        
+        <div>
+            
+            <form action = "index.php" method = "post">
+                
+                <div>
+                    
+                    Enter a number between 1 and 50:
+                    <input type = "number" name = "term" min = "1" max = "50">
+                    
+                </div>
+                
+                <div>
+                    
+                    <button type = "button">Calculate</button>
+                    
+                </div>
+                
+                <div>
+                    
+                    Your number points to this Fibonacci sequence number:
+                    <input type = "number" name = "answer" readonly>
+                    
+                </div>
+                     
+            </form>
+            
+        </div>
+
+        <?php
+        if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['term'])){
+            
+            $input = filter_input(INPUT_GET, 'term');
+
+            $first = 0;
+            $second = 1;
+
+            if ($input == 1) {
+
+                $ans = 0;
+                
+            } else if ($input == 2) {
+
+                $ans = 1;
+                
+            } else {
+
+                for ($i = 3; $i <= $input; $i++) {
+
+                $ans = $first + $second;
+                $first = $second;
+                $second = $ans;
+                
+                }
+            }
+
+            echo $ans;
+            
+        }
+        
+        ?>  
+   
+    </body>
+    
+</html>
